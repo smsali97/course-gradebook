@@ -19,5 +19,8 @@ from django.urls.conf import include
 from . import views
 
 urlpatterns = [
-    path('',views.add_course, name='add_form')
+    path('',views.add_course, name='add_form'),
+    path('delete/<slug:course_name>',views.remove_course,name='remove_course'),
+    path('edit/<str:course_name>',views.edit_course,name='remove_course')
+    
     ]

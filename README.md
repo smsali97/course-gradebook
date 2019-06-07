@@ -1,6 +1,6 @@
 # Course Gradebook
 
-![Screenshot](Screenshot.png)
+![Screenshot](my_gradebook/Screenshot.png)
 
 * Follows the [IBA Grading Plan](https://www.iba.edu.pk/gradingplan.php) (as of August 2020)
 * Grades can be only of the following categories

@@ -20,7 +20,7 @@ from . import views
 
 urlpatterns = [
     path('',views.index, name='index'),
-    path('delete/<slug:course_name>',views.remove_course,name='remove_course'),
+    path('delete/<str:course_name>',views.remove_course,name='remove_course'),
     path('edit/<str:course_name>',views.edit_course,name='remove_course')
     
     ]

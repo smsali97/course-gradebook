@@ -15,7 +15,7 @@ def index(request):
             form.save()
             
     form = CourseForm()
-    courses = Course.objects.all()
+    courses = Course.objects.order_by('course_year', '-course_semester', 'course_name')
     
     total_credit_hours = Course.objects.aggregate(total_credit_hours=Sum(F('course_credit_hours')))['total_credit_hours']
     total_grade_points = Course.objects.aggregate(total_grade_points=Sum(F('course_grade_points')*F('course_credit_hours'),output_field=FloatField()))['total_grade_points']
@@ -26,7 +26,7 @@ def index(request):
         cgpa = 'N/A'
         pct = '0'
     else:       
-        cgpa = round(total_grade_points / total_credit_hours,3)
+        cgpa = round(total_grade_points / total_credit_hours,4)
         pct = round(total_percentage / total_credit_hours,2)
         
     
@@ -49,7 +49,7 @@ def edit_course(request, course_name):
 
 
 
-    courses = Course.objects.all()
+    courses = Course.objects.order_by('course_year', '-course_semester', 'course_name')
     total_credit_hours = Course.objects.aggregate(total_credit_hours=Sum(F('course_credit_hours')))['total_credit_hours']
     total_grade_points = Course.objects.aggregate(total_grade_points=Sum(F('course_grade_points')*F('course_credit_hours'),output_field=FloatField()))['total_grade_points']
     total_percentage = Course.objects.aggregate(total_percentage=Sum(F('course_pct')*F('course_credit_hours'),output_field=FloatField()))['total_percentage']
@@ -59,7 +59,7 @@ def edit_course(request, course_name):
         cgpa = 'N/A'
         pct = '0'
     else:       
-        cgpa = round(total_grade_points / total_credit_hours,3)
+        cgpa = round(total_grade_points / total_credit_hours,4)
         pct = round(total_percentage / total_credit_hours,2)
 
     if request.method == 'POST': 
